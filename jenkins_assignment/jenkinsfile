@@ -3,16 +3,23 @@ pipeline {
     stages { 
         stage('Build') { 
             steps { 
-               echo 'This is a minimal pipeline.' 
+               echo 'Maven Test, Compile and Packaging using jenkinsfile .' 
+			   sh 'mvn validate'
             }
         }
         stage('Compile') { 
             steps { 
                sh 'mvn compile'
             }
-	 stage('Test') {
+		}
+		stage('Test') {
             steps {
                 sh 'mvn test'
+            }
+        }		
+		stage('Install') {
+            steps {
+                sh 'mvn install'
             }
         }
     }
